@@ -1,11 +1,6 @@
 import { spawn } from "child_process";
 // Import types from the shared location
-import {
-  CommandExecutionProgress,
-  CommandExecutionRequest,
-  CommandResult,
-  ResourceType,
-} from "../../renderer/types/duplik8s-types";
+import { CommandExecutionProgress, CommandExecutionRequest, CommandResult } from "../../renderer/types/duplik8s-types";
 
 /**
  * Command execution service for kubectl duplicate operations
@@ -120,16 +115,6 @@ export class CommandExecutionService {
     // Add namespace
     if (request.namespace) {
       args.push("-n", request.namespace);
-    }
-
-    // Add kubeconfig if specified
-    if (request.kubeconfig) {
-      args.push("--kubeconfig", request.kubeconfig);
-    }
-
-    // Add context if specified
-    if (request.context) {
-      args.push("--context", request.context);
     }
 
     // Add command override if specified
@@ -258,59 +243,6 @@ export class CommandExecutionService {
         }
       }, this.DEFAULT_TIMEOUT);
     });
-  }
-
-  /**
-   * Validate the command execution request
-   */
-  validateRequest(request: CommandExecutionRequest): { valid: boolean; errors: string[] } {
-    const errors: string[] = [];
-
-    // Required fields
-    if (!request.resourceType) {
-      errors.push("Resource type is required");
-    }
-
-    if (!request.resourceName?.trim()) {
-      errors.push("Resource name is required");
-    }
-
-    if (!request.namespace?.trim()) {
-      errors.push("Namespace is required");
-    }
-
-    // Validate resource type
-    const validResourceTypes = Object.values(ResourceType);
-    if (request.resourceType && !validResourceTypes.includes(request.resourceType)) {
-      errors.push(`Invalid resource type: ${request.resourceType}`);
-    }
-
-    // Validate kubeconfig path if provided
-    if (request.kubeconfig && !request.kubeconfig.trim()) {
-      errors.push("Kubeconfig path cannot be empty if provided");
-    }
-
-    // Validate context if provided
-    if (request.context && !request.context.trim()) {
-      errors.push("Context cannot be empty if provided");
-    }
-
-    // Validate command override format
-    if (request.commandOverride) {
-      try {
-        const commands = request.commandOverride.split(",").map((cmd) => cmd.trim());
-        if (commands.some((cmd) => !cmd)) {
-          errors.push("Command override cannot contain empty commands");
-        }
-      } catch {
-        errors.push("Invalid command override format");
-      }
-    }
-
-    return {
-      valid: errors.length === 0,
-      errors,
-    };
   }
 }
 

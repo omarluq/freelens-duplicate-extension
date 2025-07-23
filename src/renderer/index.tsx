@@ -1,6 +1,5 @@
 import { Renderer } from "@freelensapp/extensions";
 import { computed } from "mobx";
-import { PodDuplicatePreferencesStore } from "../common/store/duplicate-preferences-store";
 import { DuplicateDialogProvider } from "./dialogs";
 import {
   DeploymentDuplicateMenuItem,
@@ -9,7 +8,6 @@ import {
   RESOURCE_CONFIG,
   StatefulSetDuplicateMenuItem,
 } from "./menus";
-import { PodDuplicatePreferenceHint, PodDuplicatePreferenceInput } from "./preferences";
 
 // Resource type definitions
 type Pod = Renderer.K8sApi.Pod;
@@ -18,7 +16,7 @@ type StatefulSet = Renderer.K8sApi.StatefulSet;
 
 export default class DuplikExtensionRenderer extends Renderer.LensExtension {
   async onActivate() {
-    await PodDuplicatePreferencesStore.getInstanceOrCreate().loadExtension(this);
+    // Extension activation - no setup required
   }
 
   onDeactivate() {
@@ -31,17 +29,6 @@ export default class DuplikExtensionRenderer extends Renderer.LensExtension {
       id: "duplicate-dialog-provider",
       Component: DuplicateDialogProvider,
       shouldRender: computed(() => true),
-    },
-  ];
-
-  // Preferences
-  appPreferences = [
-    {
-      title: "Duplik8s Preferences",
-      components: {
-        Input: () => <PodDuplicatePreferenceInput />,
-        Hint: () => <PodDuplicatePreferenceHint />,
-      },
     },
   ];
 

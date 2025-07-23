@@ -70,33 +70,32 @@
 
   :global(.Input) {
     .input-area {
-      padding: vars.$padding (
-        vars.$padding * 1.5
-      ); // 8px 12px
-    border: 1px solid var(--borderColor);
-    border-radius: calc(vars.$unit / 2); // 4px
-    background-color: var(--inputControlBackground);
+      padding: vars.$padding (vars.$padding * 1.5); // 8px 12px
+      border: 1px solid var(--borderColor);
+      border-radius: calc(vars.$unit / 2); // 4px
+      background-color: var(--inputControlBackground);
 
-    .input {
-      color: var(--textColorPrimary);
-      font-size: 14px;
-      font-family: var(--font-main);
-      background: transparent;
-      border: none;
-      outline: none;
+      .input {
+        color: var(--textColorPrimary);
+        font-size: 14px;
+        font-family: var(--font-main);
+        background: transparent;
+        border: none;
+        outline: none;
 
-      &::placeholder {
-        color: var(--textColorSecondary);
-        opacity: 0.7;
+        &::placeholder {
+          color: var(--textColorSecondary);
+          opacity: 0.7;
+        }
+      }
+
+      &:focus-within {
+        border-color: var(--colorInfo);
+        box-shadow: 0 0 0 2px
+          var(--colorInfoTransparent, rgba(0, 167, 160, 0.1));
       }
     }
-
-    &:focus-within {
-      border-color: var(--colorInfo);
-      box-shadow: 0 0 0 2px var(--colorInfoTransparent, rgba(0, 167, 160, 0.1));
-    }
   }
-}
 }
 
 .dialogButtons {
@@ -116,7 +115,10 @@
       border: 1px solid var(--borderColor);
 
       &:hover {
-        background-color: var(--buttonSecondaryBackgroundHover, var(--secondaryBackground));
+        background-color: var(
+          --buttonSecondaryBackgroundHover,
+          var(--secondaryBackground)
+        );
       }
     }
 
@@ -126,7 +128,10 @@
       border: 1px solid var(--buttonPrimaryBackground, var(--colorInfo));
 
       &:hover {
-        background-color: var(--buttonPrimaryBackgroundHover, var(--colorInfoHover));
+        background-color: var(
+          --buttonPrimaryBackgroundHover,
+          var(--colorInfoHover)
+        );
       }
     }
   }
