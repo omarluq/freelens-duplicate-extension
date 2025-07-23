@@ -115,6 +115,9 @@ export class DuplicateDialog extends Component<Props, State> {
                     <strong>Original Resource:</strong> {resource.getName()} ({resource.kind})
                   </p>
                   <p>
+                    <strong>Duplicate Resource:</strong> {`${resource.getName()}-duplik8ted`} ({resource.kind})
+                  </p>
+                  <p>
                     <strong>Namespace:</strong> {resource.getNs()}
                   </p>
                 </div>

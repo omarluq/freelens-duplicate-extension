@@ -54,17 +54,6 @@ export default class Duplik8sMain extends Main.LensExtension {
         console.log("Received command execution request:", request);
 
         try {
-          // Validate the request
-          const validation = commandExecutionService.validateRequest(request);
-          if (!validation.valid) {
-            return {
-              success: false,
-              command: "",
-              error: `Validation failed: ${validation.errors.join(", ")}`,
-              exitCode: -1,
-            };
-          }
-
           // Execute the command with progress reporting
           const result = await commandExecutionService.executeCommand(request, (progress: CommandExecutionProgress) => {
             // Send progress updates to the renderer process
