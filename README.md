@@ -4,7 +4,7 @@ Don't debug in live workloads, duplicate instead.
 
 A Freelens extension for duplicating Kubernetes resources using [duplik8s](https://github.com/Telemaco019/duplik8s).
 
-![Demo](assets/demo.gif)
+[Screencast_20250723_203500.webm](https://github.com/user-attachments/assets/a6be2a78-6804-410c-9cef-fb1137074b2c)
 
 ## Requirements
 
