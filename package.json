@@ -63,7 +63,7 @@
     "@types/node": "~22.15.35",
     "@types/react": "^17.0.87",
     "@types/react-router-dom": "^5.3.3",
-    "@vitejs/plugin-react": "^4.7.0",
+    "@vitejs/plugin-react": "^5.1.4",
     "electron-vite": "^4.0.0",
     "mobx": "6.13.7",
     "mobx-react": "7.6.0",
